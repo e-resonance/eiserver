@@ -1,2 +1,2 @@
 # eiserver
-tools for eiserver analysis
+tools and scripts for eiserver analysis

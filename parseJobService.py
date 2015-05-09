@@ -19,6 +19,6 @@ for line in iter(f):
 		amiDuration = re.findall('= ([0-9.]+) ms',subLine)	#find the Duration
 		for ele in amiDuration:
 			outputLine = outputLine + ele
-		fout.write(outputLine + '\n')		
+		fout.write(outputLine + '\n')	#file format is: Queue 	Datestamp Timestamp Duration(ms)
 f.close
 fout.close

@@ -14,8 +14,8 @@ for line in iter(f):
 		amiTime = re.findall('(..:..:..)',subLine)	#find the Time
 		for ele in amiTime:
 			outputLine = outputLine + ele + ' '
-		amiDuration = re.findall('Starting persist of ([0-9]+) readings',subLine)	#find the Read Count
-		for ele in amiDuration:
+		readCount = re.findall('Starting persist of ([0-9]+) readings',subLine)	#find the Read Count
+		for ele in readCount:
 			outputLine = outputLine + ele
 		fout.write(outputLine + '\n')	#file format is: Queue 	Datestamp Timestamp Read Count
 f.close

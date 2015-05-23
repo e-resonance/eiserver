@@ -11,18 +11,181 @@ for line in iter(f):
 	if re.search('EisReport;' + register, line):		#find the correct register
 		subLine = line
 		outputLine = ''
-		regRead = re.findall(register + ';([0-9.]+)',subLine)	#find register reading
+		regRead = re.findall(register + ';[0-9]+;([0-9.]+)',subLine)	#find register reading
 		for ele in regRead:
 			outputLine = rtuExtId + ';' + obisCode + ';' + ele + ';;' #leaving the register advance blank so that it is calculated on import
 			
+		readTimeYear = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... (....)',subLine) #find the read time year	
+		for ele in readTimeYear:
+			outputLine = outputLine + ele + '/'
 			
+		readTimeMonth = re.findall(register + ';[0-9]+;[0-9.]+;... (...)',subLine) #find the read time month
+		for ele in readTimeMonth:
+			if ele=='Jan':
+				ele='01'
+			elif ele=='Feb':
+				ele='02'
+			elif ele=='Mar':
+				ele='03'
+			elif ele=='Apr':
+				ele='04'
+			elif ele=='May':
+				ele='05'
+			elif ele=='Jun':
+				ele='06'
+			elif ele=='Jul':
+				ele='07'
+			elif ele=='Aug':
+				ele='08'
+			elif ele=='Sep':
+				ele='09'
+			elif ele=='Oct':
+				ele='10'
+			elif ele=='Nov':
+				ele='11'
+			elif ele=='Dec':
+				ele='12'
+			else:
+				ele=''
+			outputLine = outputLine + ele + '/'
 			
-		readTimeMonth = re.findall(register + ';[0-9]+;[0-9.]+;... (...)'  ,subLine) #find the read time month
-		for ele in readTime:
+		readTimeDay = re.findall(register + ';[0-9]+;[0-9.]+;... ... (..)',subLine) #find the read time day
+		for ele in readTimeDay:
 			outputLine = outputLine + ele + ' '
 			
+		readTime = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. (..:..:..)',subLine) #find the read time
+		for ele in readTime:
+			outputLine = outputLine + ele + ';'
 			
 			
+		eventTimeYear = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... (....)',subLine) #find the read time year	
+		for ele in eventTimeYear:
+			outputLine = outputLine + ele + '/'
+			
+		eventTimeMonth = re.findall(register + ';[0-9]+;[0-9.]+;... (...)',subLine) #find the read time month
+		for ele in eventTimeMonth:
+			if ele=='Jan':
+				ele='01'
+			elif ele=='Feb':
+				ele='02'
+			elif ele=='Mar':
+				ele='03'
+			elif ele=='Apr':
+				ele='04'
+			elif ele=='May':
+				ele='05'
+			elif ele=='Jun':
+				ele='06'
+			elif ele=='Jul':
+				ele='07'
+			elif ele=='Aug':
+				ele='08'
+			elif ele=='Sep':
+				ele='09'
+			elif ele=='Oct':
+				ele='10'
+			elif ele=='Nov':
+				ele='11'
+			elif ele=='Dec':
+				ele='12'
+			else:
+				ele=''
+			outputLine = outputLine + ele + '/'
+			
+		eventTimeDay = re.findall(register + ';[0-9]+;[0-9.]+;... ... (..)',subLine) #find the read time day
+		for ele in eventTimeDay:
+			outputLine = outputLine + ele + ' '
+			
+		eventTime = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. (..:..:..)',subLine) #find the read time
+		for ele in eventTime:
+			outputLine = outputLine + ele + ';'			
+			
+		fromTimeYear = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... (....)',subLine) #find the read time year	
+		for ele in fromTimeYear:
+			outputLine = outputLine + ele + '/'
+			
+		fromTimeMonth = re.findall(register + ';[0-9]+;[0-9.]+;... (...)',subLine) #find the read time month
+		for ele in fromTimeMonth:
+			if ele=='Jan':
+				ele='01'
+			elif ele=='Feb':
+				ele='02'
+			elif ele=='Mar':
+				ele='03'
+			elif ele=='Apr':
+				ele='04'
+			elif ele=='May':
+				ele='05'
+			elif ele=='Jun':
+				ele='06'
+			elif ele=='Jul':
+				ele='07'
+			elif ele=='Aug':
+				ele='08'
+			elif ele=='Sep':
+				ele='09'
+			elif ele=='Oct':
+				ele='10'
+			elif ele=='Nov':
+				ele='11'
+			elif ele=='Dec':
+				ele='12'
+			else:
+				ele=''
+			outputLine = outputLine + ele + '/'
+			
+		fromTimeDay = re.findall(register + ';[0-9]+;[0-9.]+;... ... (..)',subLine) #find the read time day
+		for ele in fromTimeDay:
+			outputLine = outputLine + ele + ' '
+			
+		fromTime = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. (..:..:..)',subLine) #find the read time
+		for ele in fromTime:
+			outputLine = outputLine + ele + ';'					
+
+
+		toTimeYear = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... ....;null;... ... .. ..:..:.. ... (....)',subLine) #find the from time year	
+		for ele in toTimeYear:
+			outputLine = outputLine + ele + '/'
+			
+		toTimeMonth = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... ....;null;... (...)',subLine) #find the from time month
+		for ele in toTimeMonth:
+			if ele=='Jan':
+				ele='01'
+			elif ele=='Feb':
+				ele='02'
+			elif ele=='Mar':
+				ele='03'
+			elif ele=='Apr':
+				ele='04'
+			elif ele=='May':
+				ele='05'
+			elif ele=='Jun':
+				ele='06'
+			elif ele=='Jul':
+				ele='07'
+			elif ele=='Aug':
+				ele='08'
+			elif ele=='Sep':
+				ele='09'
+			elif ele=='Oct':
+				ele='10'
+			elif ele=='Nov':
+				ele='11'
+			elif ele=='Dec':
+				ele='12'
+			else:
+				ele=''
+			outputLine = outputLine + ele + '/'
+			
+		toTimeDay = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... ....;null;... ... (..)',subLine) #find the from time day
+		for ele in toTimeDay:
+			outputLine = outputLine + ele + ' '
+			
+		toTime = re.findall(register + ';[0-9]+;[0-9.]+;... ... .. ..:..:.. ... ....;null;... ... .. (..:..:..)',subLine) #find the from time
+		for ele in toTime:
+			outputLine = outputLine + ele + ';0;1;;'	
+
+
 			
 #		amiTime = re.findall('(..:..:..)',subLine)	#find the Time
 #		for ele in amiTime:

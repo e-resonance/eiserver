@@ -13,9 +13,22 @@ for line in iter(f):
 	if re.search('^../../.... ..:..,', line):		#find the interval data lines
 		subLine = line
 		outputLine = ''
-		intDateTime = re.findall('^(../../.... ..:..),',subLine)	#find date and time
-		for ele in intDateTime:
-			outputLine = chanExtId + ',' + ele + ',' + gmtOffset + ',' 
+		intYear = re.findall('^../../(....) ..:..,',subLine)	#find year
+		for ele in intYear:
+			outputLine = chanExtId + ',' + ele + '/' 
+			
+		intMonth = re.findall('^(..)/../.... ..:..,',subLine)	#find month
+		for ele in intMonth:
+			outputLine = outputLine + ele + '/' 			
+			
+		intDay = re.findall('^../(..)/.... ..:..,',subLine)	#find day
+		for ele in intDay:
+			outputLine = outputLine + ele + ' ' 		
+			
+		intTime = re.findall('^../../.... (..:..),',subLine)	#find time
+		for ele in intTime:
+			outputLine = outputLine + ele + ',' + gmtOffset + ',' 		
+			
 		intValue = re.findall('^../../.... ..:..,([0-9.]+)[0-9][0-9],',subLine)	#find the interval reading
 		for ele in intValue:
 			outputLine = outputLine + ele + ',0' 	

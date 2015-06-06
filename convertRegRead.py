@@ -5,7 +5,8 @@ mode = input('File mode to use a or w: ')
 rtuExtId = input('Enter the RTU External ID: ')
 obisCode = input('Enter the OBIS code: ')
 register = input('Enter the name of the register to extract: ')
-f = open('registerRead.csv')
+file2open = input('Enter the file to open: ')
+f = open(file2open)
 fout = open('regReadings.csv', mode)
 for line in iter(f):
 	if re.search('EisReport;' + register, line):		#find the correct register
